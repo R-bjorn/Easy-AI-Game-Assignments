@@ -14,11 +14,6 @@ namespace A1
     public class CleanerManager : Manager
     {
         /// <summary>
-        /// All floors.
-        /// </summary>
-        public static List<Floor> Floors => CleanerSingleton._floors;
-        
-        /// <summary>
         /// Getter to cast the AgentManager singleton into a FloorManager.
         /// </summary>
         private static CleanerManager CleanerSingleton => Singleton as CleanerManager;
