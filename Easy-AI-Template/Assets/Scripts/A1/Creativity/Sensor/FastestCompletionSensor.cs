@@ -1,20 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
-using EasyAI;
 using UnityEngine;
 
-namespace A1.Creativity
+namespace A1.Creativity.Sensor
 {
     /// <summary>
     /// Senor to sense the nearest dirty tile to the agent.
     /// </summary>
     [DisallowMultipleComponent]
-    public class FastestCompletionSensor : Sensor
+    public class FastestCompletionSensor : EasyAI.Sensor
     {
         public override object Sense()
         {
             Transform[] obstacles = FindObjectsOfType<Transform>().Where(t => t.CompareTag("Pickups")).ToArray();
-            List<Transform> pickedupObstacles = obstacles.Where(t=>!(t.GetComponent<PickupObstacles>().isNotPickedUp)).ToList();
+            List<Transform> pickedObstacles = obstacles.Where(t=>!(t.GetComponent<PickupObstacles>().isNotPickedUp)).ToList();
 
             if (obstacles.Length == 0)
             {
@@ -23,22 +22,22 @@ namespace A1.Creativity
             }
             
             // If Player has already picked up the obstacle, now sense where to drop the obstacle.
-            if (pickedupObstacles.Count > 0)
+            if (pickedObstacles.Count > 0)
             {
                 Transform destCollector = null;
                 Transform[] collectorList =
-                    FindObjectsOfType<Transform>().Where(t => t.CompareTag("Collectors")).ToArray().OrderBy(b => Vector3.Distance(Agent.transform.position, b.transform.position)).ToArray();;
+                    FindObjectsOfType<Transform>().Where(t => t.CompareTag("Collectors")).ToArray().OrderBy(b => Vector3.Distance(Agent.transform.position, b.transform.position)).ToArray();
 
 
-                if (pickedupObstacles.First().name.Contains("Cube"))
+                if (pickedObstacles.First().name.Contains("Cube"))
                 {
                     destCollector = collectorList.Where(t => t.name.Contains("Cube")).ToArray().First();
                 }
-                if (pickedupObstacles.First().name.Contains("Sphere"))
+                if (pickedObstacles.First().name.Contains("Sphere"))
                 {
                     destCollector = collectorList.Where(t => t.name.Contains("Sphere")).ToArray().First();
                 }
-                if (pickedupObstacles.First().name.Contains("Cylinder"))
+                if (pickedObstacles.First().name.Contains("Cylinder"))
                 {
                     destCollector = collectorList.Where(t => t.name.Contains("Cylinder")).ToArray().First();
                 }

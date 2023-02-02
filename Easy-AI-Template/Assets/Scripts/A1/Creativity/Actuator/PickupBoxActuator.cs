@@ -1,15 +1,14 @@
 using System.Linq;
-using EasyAI;
 using UnityEngine;
 
-namespace A1.Creativity
+namespace A1.Creativity.Actuator
 {
     
     /// <summary>
     /// Actuator to clean dirty tiles
     /// </summary>
     [DisallowMultipleComponent]
-    public class PickupBoxActuator : Actuator
+    public class PickupBoxActuator : EasyAI.Actuator
     {
         [Tooltip("How far away from the box must the agent be to pick it up.")]
         [Min(float.Epsilon)]

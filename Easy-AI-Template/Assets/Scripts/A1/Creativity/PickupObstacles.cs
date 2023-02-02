@@ -1,17 +1,16 @@
-using System;
 using UnityEngine;
 
 namespace A1.Creativity
 {
     public class PickupObstacles : MonoBehaviour
     {
-        private GameObject robotHand = null;
+        private GameObject _robotHand;
 
         public bool isNotPickedUp = true;
 
         private void Start()
         {
-            robotHand = GameObject.FindGameObjectWithTag("Player");
+            _robotHand = GameObject.FindGameObjectWithTag("Player");
         }
 
         private void OnCollisionEnter(Collision other)
@@ -23,9 +22,9 @@ namespace A1.Creativity
         public void GrabObstacles()
         {
             isNotPickedUp = false;
-            if (robotHand != null)
+            if (_robotHand != null)
             {
-                transform.SetParent(robotHand.transform);
+                transform.SetParent(_robotHand.transform);
             }
            
         }

@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using EasyAI;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace A1.Creativity
@@ -68,12 +66,12 @@ namespace A1.Creativity
                 return;
             CollectorSingleton._elapsedTime = 0;
 
-            for(int i = 0 ; i < _pickupList.Count ; i++)
+            foreach (var _ in _pickupList)
             {
-                Vector3 pickupRandomPos = new Vector3(Random.Range(-4, 3), 0.5f, Random.Range(-3, 3));
-                Vector3 collectorRandomPos = new Vector3(Random.Range(-5, 4), 0.1f, Random.Range(-3.5f, 4));
+                var pickupRandomPos = new Vector3(Random.Range(-4, 3), 0.5f, Random.Range(-3, 3));
+                var collectorRandomPos = new Vector3(Random.Range(-5, 4), 0.1f, Random.Range(-3.5f, 4));
 
-                int randomElement = Random.Range(0, 2);
+                var randomElement = Random.Range(0, _pickupList.Count);
                 Instantiate(_pickupList[randomElement], pickupRandomPos, Quaternion.identity);
                 Instantiate(_collectorList[randomElement], collectorRandomPos, Quaternion.identity);
             }
