@@ -15,7 +15,7 @@ namespace A1.States
             // TODO - Assignment 1 - Complete the mind of this agent along with any sensors and actuators you need.
             if (agent.HasAction<Transform>())
             {
-                return;
+                return;    
             }
 
             Transform tile = agent.Sense<NearestTileSensor, Transform>();

@@ -414,9 +414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c307137b9c4d4dc5af0399738b8ef9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  moveAcceleration: 10
-  lookSpeed: 5
+  moveSpeed: 5
+  moveAcceleration: 5
+  lookSpeed: 2.5
 --- !u!114 &6531831494736946309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491d39c3f7db40e4d815295009c3c72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleaningTime: 2
+  collectDistance: 1
 --- !u!114 &-3924504624703326909
 MonoBehaviour:
   m_ObjectHideFlags: 0
