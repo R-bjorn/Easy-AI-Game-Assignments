@@ -1,5 +1,6 @@
 ﻿using A2.Sensors;
 using EasyAI;
+using EasyAI.Navigation;
 using UnityEngine;
 
 namespace A2.States
@@ -43,7 +44,7 @@ namespace A2.States
             
             // While microbe hasn't ate any other microbe, keep moving towards them. otherwise, move to roaming state
             if (!microbe.Eat()){
-                microbe.Move(preyMicrobe.transform);
+                microbe.Move(preyMicrobe.transform, Steering.Behaviour.Pursue);
                 microbe.Act(preyMicrobe);
             }
             else

@@ -1,4 +1,5 @@
 ﻿using EasyAI;
+using EasyAI.Navigation;
 using UnityEngine;
 
 namespace A2.States
@@ -19,12 +20,14 @@ namespace A2.States
         {
             if (agent is null)
                 return;
-            agent.Log("I should be running away but I don't know how to yet!");
+            // agent.Log("I should be running away but I don't know how to yet!");
             if (agent is not Microbe microbe)
                 return;
 
             if (microbe.Hunter == null) return;
             var hunter = microbe.Hunter;
+            
+            microbe.Move(hunter.transform, Steering.Behaviour.Evade);
             // If this microbe escape from hunter by moving further than pursuitDistance,
             // hunter should stop hunting this microbe and both microbe should move to roaming state.
             if (!(Vector3.Distance(microbe.transform.position, hunter.transform.position) >=

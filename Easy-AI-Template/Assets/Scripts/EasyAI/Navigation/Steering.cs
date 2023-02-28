@@ -117,8 +117,7 @@ namespace EasyAI.Navigation
         /// <returns>The velocity to apply to the agent to perform the flee.</returns>
         private static Vector2 Flee(Vector2 position, Vector2 velocity, Vector2 pursuer, float speed)
         {
-            // TODO - Assignment 3 - Complete the remaining steering behaviours and use them to improve the microbes level.
-            return Vector2.zero;
+            return (position - pursuer).normalized * speed - velocity;
         }
 
         /// <summary>
@@ -133,8 +132,14 @@ namespace EasyAI.Navigation
         /// <returns>The velocity to apply to the agent to perform the pursuit.</returns>
         private static Vector2 Pursue(Vector2 position, Vector2 velocity, Vector2 evader, Vector2 evaderLastPosition, float speed, float deltaTime)
         {
-            // TODO - Assignment 3 - Complete the remaining steering behaviours and use them to improve the microbes level.
-            return Vector2.zero;
+            // First calculate the current velocity of evader
+            Vector2 evaderVelocity = (evader - evaderLastPosition) / deltaTime;
+            
+            // Predicted position of the evader after time interval
+            Vector2 predictedPos = evader + evaderVelocity * (evader - position).magnitude / (speed + evaderVelocity.magnitude);
+
+            // Same as seeking to the predicted position
+            return (predictedPos - position).normalized * speed - velocity;
         }
 
         /// <summary>
@@ -149,8 +154,14 @@ namespace EasyAI.Navigation
         /// <returns>The velocity to apply to the agent to perform the evade.</returns>
         private static Vector2 Evade(Vector2 position, Vector2 velocity, Vector2 pursuer, Vector2 pursuerLastPosition, float speed, float deltaTime)
         {
-            // TODO - Assignment 3 - Complete the remaining steering behaviours and use them to improve the microbes level.
-            return Vector2.zero;
+            // First calculate the current velocity of pursuer
+            Vector2 pursuerVelocity = (pursuer - pursuerLastPosition) / deltaTime;
+            
+            // Predicted position of the pursuer after time interval
+            Vector2 predictedPos = pursuer + pursuerVelocity * (pursuer - position).magnitude / (speed + pursuerVelocity.magnitude);
+
+            // Same as fleeing from the predicted position
+            return (position - predictedPos).normalized * speed - velocity;
         }
     }
 }
