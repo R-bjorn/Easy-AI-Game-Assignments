@@ -1,9 +1,10 @@
-﻿using EasyAI;
+﻿using A2.Sensors;
+using EasyAI;
 using UnityEngine;
 
 namespace A2.States
 {
-    /// <summary>
+    /// <summary> 
     /// State for microbes that are hungry and wanting to seek food.
     /// </summary>
     [CreateAssetMenu(menuName = "A2/States/Microbe Hungry State", fileName = "Microbe Hungry State")]
@@ -11,17 +12,47 @@ namespace A2.States
     {
         public override void Enter(Agent agent)
         {
-            // TODO - Assignment 2 - Complete this state. Have microbes search for other microbes to eat.
+            agent.Log("Feeling hungry!!");
         }
         
         public override void Execute(Agent agent)
         {
-            // TODO - Assignment 2 - Complete this state. Have microbes search for other microbes to eat.
+            
+            if (agent is null || agent.HasAction<Transform>())
+            {
+                return;
+            }
+            
+            //Getting variables
+            Microbe microbe = agent as Microbe;
+            if (microbe is null)
+                return;
+            Microbe preyMicrobe = microbe.Sense<NearestPreySensor, Microbe>();
+            if (preyMicrobe is null)
+            {   
+                agent.Log("No microbes to eat.");
+                agent.SetState<MicrobeRoamingState>();
+                return;
+            }
+
+            if (preyMicrobe.HasTarget)
+                return;
+            // start hunting the prey microbe
+            microbe.StartHunting(preyMicrobe);
+            preyMicrobe.SetState<MicrobeHuntedState>();
+            
+            // While microbe hasn't ate any other microbe, keep moving towards them. otherwise, move to roaming state
+            if (!microbe.Eat()){
+                microbe.Move(preyMicrobe.transform);
+                microbe.Act(preyMicrobe);
+            }
+            else
+                microbe.SetState<MicrobeRoamingState>();
         }
         
         public override void Exit(Agent agent)
         {
-            // TODO - Assignment 2 - Complete this state. Have microbes search for other microbes to eat.
+            agent.Log("Had enough to eat. uffff!!");
         }
     }
 }

@@ -22,7 +22,10 @@ namespace A2.Sensors
                 return null;
             }
 
-            Microbe[] microbes = MicrobeManager.Microbes.Where(m => m != microbe && m.IsAdult && m.IsInState<MicrobeMatingState>() && Vector3.Distance(microbe.transform.position, m.transform.position) < microbe.DetectionRange).ToArray();
+            Microbe[] microbes = MicrobeManager.Microbes.Where(m => m != microbe 
+                                                                    && m.IsAdult
+                                                                    && m.IsInState<MicrobeMatingState>()
+                                                                    && Vector3.Distance(microbe.transform.position, m.transform.position) < microbe.DetectionRange).ToArray();
             if (microbes.Length == 0)
             {
                 return null;

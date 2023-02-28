@@ -155,6 +155,8 @@ namespace A2
         /// <returns>True if mating was complete, false otherwise.</returns>
         private static bool Mate(Microbe a, Microbe b)
         {
+            a.Log($"mating with {b.name}");
+            b.Log($"mating with {a.name}");
             if (a._targetMicrobe != b || b._targetMicrobe != a)
             {
                 return false;
@@ -219,8 +221,8 @@ namespace A2
 
             if (!accepted)
             {
-                Log($"Could not mate with {potentialMate.name}.");
-                potentialMate.Log($"Cannot mate with {name}.");
+                Log($"Could not mate with {potentialMate.name}. not accepted");
+                potentialMate.Log($"Cannot mate with {name}. not accepted");
                 return;
             }
 

@@ -1,4 +1,6 @@
-﻿using EasyAI;
+﻿using A2.Pickups;
+using A2.Sensors;
+using EasyAI;
 using UnityEngine;
 
 namespace A2.States
@@ -11,17 +13,43 @@ namespace A2.States
     {
         public override void Enter(Agent agent)
         {
-            // TODO - Assignment 2 - Complete this state. Have microbes look for pickups.
+            agent.Log("Moving to nearest pickup");
         }
         
         public override void Execute(Agent agent)
         {
-            // TODO - Assignment 2 - Complete this state. Have microbes look for pickups.
+            if (agent is null)
+                return;
+            if(agent.HasAction<MicrobeBasePickup>())
+                return;
+            
+            // Getting agent as microbe variable
+            Microbe microbe = agent as Microbe;
+            if (microbe is null)
+                return;
+            
+            // Getting the nearest pickup using microbe sensor
+            MicrobeBasePickup pickup = microbe.Sense<NearestPickupSensor, MicrobeBasePickup>();
+            if (pickup == null)
+            {
+                microbe.Log("No pickups to eat");
+                return;
+            }
+
+            // Moving towards pickup
+            microbe.Move(pickup.transform.position);
+            microbe.Act(pickup);
+            
+            if (microbe.Pickup == null)
+            {
+                microbe.ClearActions();
+                microbe.SetState<MicrobeRoamingState>();
+            }
         }
         
         public override void Exit(Agent agent)
         {
-            // TODO - Assignment 2 - Complete this state. Have microbes look for pickups.
+            agent.Log("At the pickup location.");
         }
     }
 }
