@@ -35,7 +35,7 @@ namespace EasyAI.Navigation
         /// <summary>
         /// The cost to reach this node from previous nodes.
         /// </summary>
-        private float CostG { get; set; }
+        public float CostG { get; set; }
 
         /// <summary>
         /// Store node data during A* pathfinding.

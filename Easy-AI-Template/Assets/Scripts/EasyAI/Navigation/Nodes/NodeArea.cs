@@ -48,7 +48,7 @@ namespace EasyAI.Navigation.Nodes
             "2 - Node per every 0.5 units.\n" +
             "4 - Node per every 0.25 units."
         )]
-        private int nodesPerStep = 4;
+        public int nodesPerStep = 4;
 
         /// <summary>
         /// How many node spaces there are on the X axis.
