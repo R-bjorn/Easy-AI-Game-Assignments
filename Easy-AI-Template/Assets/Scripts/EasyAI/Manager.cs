@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using EasyAI.Navigation;
 using EasyAI.Navigation.Nodes;
@@ -10,6 +11,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace EasyAI
 {
@@ -133,16 +139,6 @@ namespace EasyAI
         public static List<Agent> CurrentAgents => Singleton.Agents;
 
         /// <summary>
-        /// List of all navigation nodes.
-        /// </summary>
-        public static List<Vector3> Nodes => Singleton._nodes;
-
-        /// <summary>
-        /// List of all navigation connections.
-        /// </summary>
-        public static List<Connection> Connections => Singleton._connections;
-
-        /// <summary>
         /// How much height difference can there be between string pulls.
         /// </summary>
         public static float PullMaxHeight => Singleton.pullMaxHeight;
@@ -241,7 +237,7 @@ namespace EasyAI
 
         [Tooltip(
             "How much height difference can there be between string pulls, set to zero for no limit.\n" +
-            "Increase this value if generated paths are being generated between too high of slopes/stairs."
+            "Increase this value if generated paths are being generated between too high off slopes/stairs."
         )]
         [Min(0)]
         [SerializeField]
@@ -250,10 +246,6 @@ namespace EasyAI
         [Tooltip("Lookup table to save and load navigation.")]
         [SerializeField]
         private LookupTable lookupTable;
-
-        [Tooltip("Check to load the lookup data, otherwise new data will be generated and saved.")]
-        [SerializeField]
-        private bool loadLookupTable;
 
         [Header("Performance")]
         [Tooltip("The maximum number of agents which can be updated in a single frame. Set to zero to be unlimited.")]
@@ -355,11 +347,6 @@ namespace EasyAI
         private IntelligenceComponent _selectedComponent;
 
         /// <summary>
-        /// The navigation lookup table.
-        /// </summary>
-        private NavigationLookup[] _navigationTable;
-
-        /// <summary>
         /// Lookup a path to take from a starting position to an end goal.
         /// </summary>
         /// <param name="position">The starting position.</param>
@@ -412,7 +399,7 @@ namespace EasyAI
                 try
                 {
                     // Get the next node to move to.
-                    NavigationLookup lookup = Singleton._navigationTable.First(l => l.current == nodePosition && l.goal == nodeGoal);
+                    NavigationLookup lookup = Singleton.lookupTable.Data.First(l => l.current == nodePosition && l.goal == nodeGoal);
                 
                     // If the node is the goal destination, all nodes in the path have been finished so stop the loop.
                     if (lookup.next == nodeGoal)
@@ -1693,157 +1680,181 @@ namespace EasyAI
 
             Singleton = this;
         }
-
-        protected virtual void Start()
+        
+        /// <summary>
+        /// Bake navigation data.
+        /// </summary>
+#if UNITY_EDITOR
+        [MenuItem("Easy-AI/Bake Navigation")]
+        public static void BakeNavigation()
         {
-            // If we should use a pre-generated lookup table, use it if one exists.
-            if (loadLookupTable)
+            if (Application.isPlaying)
             {
-                if (lookupTable != null)
+                Debug.Log("Can't bake in play mode.");
+                return;
+            }
+            
+            Stopwatch stopwatch = new();
+            stopwatch.Start();
+            
+            Singleton = FindObjectOfType<Manager>();
+            if (Singleton == null)
+            {
+                Debug.LogError("No manager found in the scene.");
+                return;
+            }
+
+            if (Singleton.lookupTable == null)
+            {
+                Debug.Log("No lookup table attached to the manager.");
+                return;
+            }
+
+            Singleton._nodes.Clear();
+            
+            // Generate all node areas in the scene.
+            foreach (NodeArea nodeArea in FindObjectsOfType<NodeArea>())
+            {
+                Singleton._nodes.AddRange(nodeArea.Generate());
+            }
+
+            foreach (Node node in FindObjectsOfType<Node>())
+            {
+                Singleton._nodes.Add(node.transform.position);
+            }
+
+            // Setup all freely-placed nodes.
+            foreach (Vector3 p in Singleton._nodes)
+            {
+                foreach (Vector3 v in Singleton._nodes)
                 {
-                    _navigationTable = lookupTable.Read;
-
-                    foreach (NavigationLookup lookup in _navigationTable)
+                    if (p == v)
                     {
-                        // Ensure all nodes are added.
-                        if (!_nodes.Contains(lookup.current))
+                        continue;
+                    }
+                    
+                    // Ensure the nodes have line of sight on each other.
+                    if (Singleton.navigationRadius <= 0)
+                    {
+                        if (Physics.Linecast(p, v, Singleton.obstacleLayers))
                         {
-                            _nodes.Add(lookup.current);
-                        }
-            
-                        if (!_nodes.Contains(lookup.goal))
-                        {
-                            _nodes.Add(lookup.goal);
-                        }
-            
-                        if (!_nodes.Contains(lookup.next))
-                        {
-                            _nodes.Add(lookup.next);
-                        }
-
-                        // Ensure a connection between the current and next nodes exists.
-                        if (!_connections.Any(c => c.A == lookup.current && c.B == lookup.next || c.A == lookup.next && c.B == lookup.current))
-                        {
-                            _connections.Add(new(lookup.current, lookup.next));
+                            continue;
                         }
                     }
-                }
-                else
-                {
-                    loadLookupTable = false;
+                    else
+                    {
+                        Vector3 p1 = p;
+                        p1.y += Singleton.navigationRadius;
+                        Vector3 p2 = v;
+                        p2.y += Singleton.navigationRadius;
+                        Vector3 direction = (p2 - p1).normalized;
+                        if (Physics.SphereCast(p1, Singleton.navigationRadius, direction, out _, Vector3.Distance(p, v), Singleton.obstacleLayers))
+                        {
+                            continue;
+                        }
+                    }
+                
+                    // Ensure there is not already an entry for this connection in the list.
+                    if (Singleton._connections.Any(c => c.A == p && c.B == v || c.A == v && c.B == p))
+                    {
+                        continue;
+                    }
+            
+                    // Add the connection to the list.
+                    Singleton._connections.Add(new(p, v));
                 }
             }
-        
-            // If we should generate a lookup table or there was not one pre-generated to load, generate one.
-            if (!loadLookupTable)
+
+            // If any nodes are not a part of any connections, remove them.
+            for (int i = 0; i < Singleton._nodes.Count; i++)
             {
-                // Generate all node areas in the scene.
-                foreach (NodeArea nodeArea in FindObjectsOfType<NodeArea>())
+                if (!Singleton._connections.Any(c => c.A == Singleton._nodes[i] || c.B == Singleton._nodes[i]))
                 {
-                    nodeArea.Generate();
+                    Singleton._nodes.RemoveAt(i);
                 }
+            }
 
-                // Setup all freely-placed nodes.
-                foreach (Node node in FindObjectsOfType<Node>())
+            // Store all new lookup tables.
+            List<NavigationLookup> table = new();
+    
+            // Loop through all nodes.
+            System.Threading.Tasks.Parallel.For(0, Singleton._nodes.Count, i =>
+            {
+                // Loop through all nodes again so pathfinding can be done on each pair.
+                for (int j = 0; j < Singleton._nodes.Count; j++)
                 {
-                    Vector3 p = node.transform.position;
-                    node.Finish();
-                
-                    foreach (Vector3 v in _nodes)
+                    // Skip if each node is the same.
+                    if (i == j)
                     {
-                        // Ensure the nodes have line of sight on each other.
-                        if (navigationRadius <= 0)
-                        {
-                            if (Physics.Linecast(p, v, obstacleLayers))
-                            {
-                                continue;
-                            }
-                        }
-                        else
-                        {
-                            Vector3 p1 = p;
-                            p1.y += navigationRadius;
-                            Vector3 p2 = v;
-                            p2.y += navigationRadius;
-                            Vector3 direction = (p2 - p1).normalized;
-                            if (Physics.SphereCast(p1, navigationRadius, direction, out _, Vector3.Distance(p, v), obstacleLayers))
-                            {
-                                continue;
-                            }
-                        }
-                    
-                        // Ensure there is not already an entry for this connection in the list.
-                        if (_connections.Any(c => c.A == p && c.B == v || c.A == v && c.B == p))
-                        {
-                            continue;
-                        }
-                
-                        // Add the connection to the list.
-                        _connections.Add(new(p, v));
+                        continue;
                     }
+
+                    // Get the A* path from one node to another.
+                    List<Vector3> path = AStar.Perform(Singleton._nodes[i], Singleton._nodes[j], Singleton._connections);
                 
-                    _nodes.Add(p);
-                }
-
-                // If any nodes are not a part of any connections, remove them.
-                for (int i = 0; i < _nodes.Count; i++)
-                {
-                    if (!_connections.Any(c => c.A == _nodes[i] || c.B == _nodes[i]))
+                    // Skip if there was no path.
+                    if (path.Count < 2)
                     {
-                        _nodes.RemoveAt(i--);
+                        continue;
                     }
-                }
 
-                // Store all new lookup tables.
-                List<NavigationLookup> table = new();
-        
-                // Loop through all nodes.
-                for (int i = 0; i < _nodes.Count; i++)
-                {
-                    // Loop through all nodes again so pathfinding can be done on each pair.
-                    for (int j = 0; j < _nodes.Count; j++)
+                    // Loop through all nodes in the path and add them to the lookup table.
+                    lock (table)
                     {
-                        // Skip if each node is the same.
-                        if (i == j)
-                        {
-                            continue;
-                        }
-
-                        // Get the A* path from one node to another.
-                        List<Vector3> path = AStar.Perform(_nodes[i], _nodes[j], _connections);
-                    
-                        // Skip if there was no path.
-                        if (path.Count < 2)
-                        {
-                            continue;
-                        }
-
-                        // Loop through all nodes in the path and add them to the lookup table.
                         for (int k = 0; k < path.Count - 1; k++)
                         {
                             // Ensure there are no duplicates in the lookup table.
-                            if (path[k] == _nodes[j] || table.Any(t => t.current == path[k] && t.goal == _nodes[j] && t.next == path[k + 1]))
+                            int j1 = j;
+                            int k1 = k;
+                            if (path[k] != Singleton._nodes[j] && !table.Any(t => t.current == path[k1] && t.goal == Singleton._nodes[j1] && t.next == path[k1 + 1]))
                             {
-                                continue;
+                                table.Add(new(path[k], Singleton._nodes[j], path[k + 1]));
                             }
-
-                            NavigationLookup lookup = new(path[k], _nodes[j], path[k + 1]);
-                            table.Add(lookup);
                         }
                     }
                 }
+            });
+            
+            // Write the lookup table to a file for fast reading on future runs.
+            Singleton.lookupTable.Write(table.ToArray());
+            
+            stopwatch.Stop();
+            Debug.Log($"Navigation Baked | {Singleton._nodes.Count} Nodes | {Singleton._connections.Count} Connections | {table.Count} Lookups | {stopwatch.Elapsed}");
+        }
+#endif
 
-                // Finalize the lookup table.
-                _navigationTable = table.ToArray();
-
-                // Write the lookup table to a file for fast reading on future runs.
-                if (lookupTable != null)
+        protected virtual void Start()
+        {
+            // Load lookup data if it exists.
+            if (lookupTable != null)
+            {
+                foreach (NavigationLookup lookup in lookupTable.Data)
                 {
-                    lookupTable.Write(_navigationTable);
-                }
+                    // Ensure all nodes are added.
+                    if (!_nodes.Contains(lookup.current))
+                    {
+                        _nodes.Add(lookup.current);
+                    }
+            
+                    if (!_nodes.Contains(lookup.goal))
+                    {
+                        _nodes.Add(lookup.goal);
+                    }
+            
+                    if (!_nodes.Contains(lookup.next))
+                    {
+                        _nodes.Add(lookup.next);
+                    }
 
-                CheckGizmos();
+                    // Ensure a connection between the current and next nodes exists.
+                    if (!_connections.Any(c => c.A == lookup.current && c.B == lookup.next || c.A == lookup.next && c.B == lookup.current))
+                    {
+                        _connections.Add(new(lookup.current, lookup.next));
+                    }
+                }
             }
+
+            CheckGizmos();
 
             // Clean up all node related components in the scene as they are no longer needed after generation.
             foreach (NodeBase nodeBase in FindObjectsOfType<NodeBase>().OrderBy(n => n.transform.childCount))

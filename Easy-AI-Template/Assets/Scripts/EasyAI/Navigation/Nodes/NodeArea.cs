@@ -48,7 +48,7 @@ namespace EasyAI.Navigation.Nodes
             "2 - Node per every 0.5 units.\n" +
             "4 - Node per every 0.25 units."
         )]
-        private int nodesPerStep = 1;
+        private int nodesPerStep = 4;
 
         /// <summary>
         /// How many node spaces there are on the X axis.
@@ -61,19 +61,9 @@ namespace EasyAI.Navigation.Nodes
         public int RangeZ => (corner1.y - corner2.y) * nodesPerStep + 1;
 
         /// <summary>
-        /// How many nodes are placed per every one unit of world space along each axis.
-        /// </summary>
-        public int NodesPerStep => nodesPerStep;
-
-        /// <summary>
         /// Data map.
         /// </summary>
         private char[,] _data;
-
-        /// <summary>
-        /// How far nodes can connect to each other from.
-        /// </summary>
-        private float _oldNodeDistance;
 
         /// <summary>
         /// The nodes.
@@ -101,7 +91,7 @@ namespace EasyAI.Navigation.Nodes
             Gizmos.DrawLine(new(corner2.x, floorCeiling.x, corner2.y), new(corner2.x, floorCeiling.x, corner1.y));
         }
 
-        public void Generate()
+        public List<Vector3> Generate()
         {
             // Ensure X coordinates are in the required order.
             if (corner2.x > corner1.x)
@@ -139,61 +129,11 @@ namespace EasyAI.Navigation.Nodes
             // Get the node generator.
             List<NodeGenerator> generators = GetComponents<NodeGenerator>().ToList();
             generators.AddRange(GetComponentsInChildren<NodeGenerator>());
-            NodeGenerator generator = generators.FirstOrDefault(g => g.enabled);
-            if (generator != null)
+            foreach (NodeGenerator generator in generators)
             {
                 // Run the node generator.
                 generator.NodeArea = this;
                 generator.Generate();
-
-                // Form connections between nodes.
-                for (int x = 0; x < _nodes.Count; x++)
-                {
-                    for (int z = 0; z < _nodes.Count; z++)
-                    {
-                        // Cannot connect the same node.
-                        if (x == z)
-                        {
-                            continue;
-                        }
-
-                        // Ensure the nodes have line of sight on each other.
-                        if (Manager.NavigationRadius <= 0)
-                        {
-                            if (Physics.Linecast(_nodes[x], _nodes[z], Manager.ObstacleLayers))
-                            {
-                                continue;
-                            }
-                        }
-                        else
-                        {
-                            Vector3 p1 = _nodes[x];
-                            p1.y += Manager.NavigationRadius;
-                            Vector3 p2 = _nodes[z];
-                            p2.y += Manager.NavigationRadius;
-                            Vector3 direction = (p2 - p1).normalized;
-                            if (Physics.SphereCast(p1, Manager.NavigationRadius, direction, out _, Vector3.Distance(_nodes[x], _nodes[z]), Manager.ObstacleLayers))
-                            {
-                                continue;
-                            }
-                        }
-
-                        // Ensure there is not already an entry for this connection in the list.
-                        if (Manager.Connections.Any(c => c.A == _nodes[x] && c.B == _nodes[z] || c.A == _nodes[z] && c.B == _nodes[x]))
-                        {
-                            continue;
-                        }
-                
-                        // Add the connection to the list.
-                        Manager.Connections.Add(new(_nodes[x], _nodes[z]));
-                    }
-                }
-            }
-
-            // Cleanup all generators.
-            foreach (NodeGenerator g in generators)
-            {
-                g.Finish();
             }
 
 #if UNITY_EDITOR
@@ -204,8 +144,7 @@ namespace EasyAI.Navigation.Nodes
                 DirectoryInfo info = Directory.CreateDirectory(folder);
                 if (!info.Exists)
                 {
-                    Finish();
-                    return;
+                    return _nodes;
                 }
             }
     
@@ -222,9 +161,7 @@ namespace EasyAI.Navigation.Nodes
             writer.Write(ToString());
             writer.Close();
 #endif
-            
-            // Cleanup this node area.
-            Finish();
+            return _nodes;
         }
 
         /// <summary>
@@ -272,11 +209,6 @@ namespace EasyAI.Navigation.Nodes
             if (!_nodes.Contains(v))
             {
                 _nodes.Add(v);
-            }
-
-            if (!Manager.Nodes.Contains(v))
-            {
-                Manager.Nodes.Add(v);
             }
         }
 

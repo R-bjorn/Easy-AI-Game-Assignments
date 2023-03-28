@@ -14,7 +14,7 @@ namespace EasyAI.Navigation.Nodes
     [CreateAssetMenu(menuName = "Easy-AI/Lookup Table", fileName = "Lookup Table", order = 0)]
     public class LookupTable : ScriptableObject
     {
-        public NavigationLookup[] Read => data?.ToArray();
+        public NavigationLookup[] Data => data?.ToArray();
         
         [Tooltip("Navigation data.")]
         [SerializeField]
@@ -25,6 +25,7 @@ namespace EasyAI.Navigation.Nodes
             data = write.ToArray();
 #if UNITY_EDITOR
             EditorUtility.SetDirty(this);
+            AssetDatabase.SaveAssets();
 #endif
         }
     }

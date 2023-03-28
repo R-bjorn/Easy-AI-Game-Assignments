@@ -489,7 +489,7 @@ namespace EasyAI
         public void Move(Vector3 pos, Steering.Behaviour behaviour = Steering.Behaviour.Seek)
         {
             Moves.Clear();
-            AddMove(pos, behaviour);
+            AddMove(pos, behaviour);    
         }
 
         /// <summary>
