@@ -1793,7 +1793,7 @@ namespace EasyAI
                     List<Vector3> path = AStar.Perform(Singleton._nodes[i], Singleton._nodes[j], Singleton._connections);
                 
                     // Skip if there was no path.
-                    if (path.Count < 2)
+                    if (path == null || path.Count < 2)
                     {
                         continue;
                     }

@@ -34,7 +34,7 @@ namespace EasyAI.Navigation.Generators
                     // Check if it is a convex corner
                     if (!IsConvexCorner(x, z)) continue;
                     
-                    Debug.Log("It is Convex corner");
+                    // Debug.Log("It is Convex corner");
                     // Place a node at the corner accordingly
                     if(_upLeftCorner)
                         NodeArea.AddNode(x - cornerNodeSteps, z + cornerNodeSteps);
