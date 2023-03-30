@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -948,7 +948,6 @@ MonoBehaviour:
     m_Bits: 64
   pullMaxHeight: 0
   lookupTable: {fileID: 11400000, guid: b97faee4dc8b6cc47ba1e72cde9506f3, type: 2}
-  loadLookupTable: 0
   maxAgentsPerUpdate: 0
   maxMessages: 100
   detailsWidth: 500
@@ -2835,4 +2834,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f34aef3661e4fc596e362090c5bca1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cornerNodeSteps: 3

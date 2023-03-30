@@ -48,7 +48,7 @@ namespace EasyAI.Navigation.Nodes
             "2 - Node per every 0.5 units.\n" +
             "4 - Node per every 0.25 units."
         )]
-        public int nodesPerStep = 4;
+        private int nodesPerStep = 4;
 
         /// <summary>
         /// How many node spaces there are on the X axis.
@@ -183,6 +183,11 @@ namespace EasyAI.Navigation.Nodes
         /// <returns>True if the space is open, false otherwise.</returns>
         public bool IsOpen(int x, int z)
         {
+            if (x < 0 || x >= RangeX || z < 0 || z >= RangeZ)
+            {
+                Debug.LogError($"Invalid indices ({x}, {z}) passed to IsOpen method.");
+                return false;
+            }
             return _data[x, z] != Closed;
         }
 

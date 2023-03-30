@@ -55,7 +55,7 @@ namespace EasyAI.Navigation
                     }
 
                     // Calculate the tentative G score for the neighbour node.
-                    var tentativeGScore = currentNode.CostG + connection.Cost;
+                    var tentativeGScore = currentNode.CostG; // + connection.Cost;
                     // Check if the neighbour node is in the open set or not.
                     if (!openSet.Contains(neighbour))
                     {
