@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using EasyAI.Navigation.Nodes;
 using UnityEngine;
 
@@ -32,10 +33,10 @@ namespace EasyAI.Navigation
             while (openList.Count > 0)
             {
                 // Sort the open list by cost F (lowest to highest)
-                openList.Sort((node1, node2) => node1.CostF.CompareTo(node2.CostF));
+                openList = openList.OrderBy(node => node.CostF).ToList();
 
                 // Select the node with the lowest cost F
-                var  currentNode = openList[0];
+                var currentNode = openList[0];
 
                 // If the current node is the goal node, we are done
                 if (currentNode.Position == goal)
@@ -58,8 +59,9 @@ namespace EasyAI.Navigation
                 // Get the successors of the current node
                 foreach (var connection in connections)
                 {
-                    if (connection.A != currentNode.Position) continue;
-                    var successorNode = new AStarNode(connection.B, goal, currentNode);
+                    if (connection.A != currentNode.Position && connection.B != currentNode.Position) continue;
+                    var successorPosition = connection.A == currentNode.Position ? connection.B : connection.A;
+                    var successorNode = new AStarNode(successorPosition, goal, currentNode);
 
                     // Check if the successor node is already on the closed list
                     if (closedList.Contains(successorNode))
