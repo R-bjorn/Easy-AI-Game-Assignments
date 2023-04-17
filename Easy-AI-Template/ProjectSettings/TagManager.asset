@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pickups
   - Collectors
+  - Water
   layers:
   - Default
   - TransparentFX
