@@ -41,13 +41,14 @@ Transform:
   - {fileID: 3588372188053190514}
   - {fileID: 678376820904505863}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &29617949641167024
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9f118c3e70798814689f6ecb33cff534, type: 3}
@@ -60,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9f118c3e70798814689f6ecb33cff534, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9f118c3e70798814689f6ecb33cff534, type: 3}
       propertyPath: m_LocalScale.z
@@ -111,6 +112,9 @@ PrefabInstance:
       value: Battlement Corner Outer (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f118c3e70798814689f6ecb33cff534, type: 3}
 --- !u!4 &568438866762741595 stripped
 Transform:
@@ -122,6 +126,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -134,7 +139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -185,6 +190,9 @@ PrefabInstance:
       value: Battlement (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &678376820904505863 stripped
 Transform:
@@ -196,6 +204,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -208,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -259,6 +268,9 @@ PrefabInstance:
       value: Battlement (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &1667057409346956945 stripped
 Transform:
@@ -270,6 +282,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -282,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -333,6 +346,9 @@ PrefabInstance:
       value: Battlement (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &1293051451219442187 stripped
 Transform:
@@ -344,6 +360,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -356,7 +373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -407,6 +424,9 @@ PrefabInstance:
       value: Battlement (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &1936922335532587713 stripped
 Transform:
@@ -418,6 +438,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -430,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -481,6 +502,9 @@ PrefabInstance:
       value: Battlement (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &2486352429503767830 stripped
 Transform:
@@ -492,6 +516,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -504,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -555,6 +580,9 @@ PrefabInstance:
       value: Battlement (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &3588372188053190514 stripped
 Transform:
@@ -566,6 +594,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -578,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -629,6 +658,9 @@ PrefabInstance:
       value: Battlement (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &4320920617383290393 stripped
 Transform:
@@ -640,6 +672,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -652,7 +685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -703,6 +736,9 @@ PrefabInstance:
       value: Battlement (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &4103189401027585531 stripped
 Transform:
@@ -714,6 +750,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -726,7 +763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -777,6 +814,9 @@ PrefabInstance:
       value: Battlement (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &5010856749142553963 stripped
 Transform:
@@ -788,6 +828,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9f118c3e70798814689f6ecb33cff534, type: 3}
@@ -800,7 +841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9f118c3e70798814689f6ecb33cff534, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9f118c3e70798814689f6ecb33cff534, type: 3}
       propertyPath: m_LocalScale.z
@@ -851,6 +892,9 @@ PrefabInstance:
       value: Battlement Corner Outer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f118c3e70798814689f6ecb33cff534, type: 3}
 --- !u!4 &5494032544247217084 stripped
 Transform:
@@ -862,6 +906,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7384478758218110040}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
@@ -874,7 +919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 177.98999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
       propertyPath: m_LocalScale.z
@@ -925,6 +970,9 @@ PrefabInstance:
       value: Battlement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812ca40e44a8df3429e0b51b116c0268, type: 3}
 --- !u!4 &7201112753843094158 stripped
 Transform:
