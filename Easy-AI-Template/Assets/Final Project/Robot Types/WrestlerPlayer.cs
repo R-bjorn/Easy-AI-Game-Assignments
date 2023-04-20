@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Final_Project.Robot_Scripts;
 using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,15 +11,15 @@ namespace Final_Project.Robot_Types
     {
         [SerializeField] private float movementSpeed = 20f;
 
-        private Transform spawnedLocations;
-        
+        // private GameObject cameraFollow;
+
+        private Transform _spawnedLocations;
         private List<Transform> _availableLocations;
-        private int index;
+        private int _index;
 
         private void Awake()
         {
-            spawnedLocations = GameObject.FindGameObjectWithTag("SpawnedLocation").transform;
-            Debug.Log("Getting spawned location" + spawnedLocations.name);
+            _spawnedLocations = GameObject.FindGameObjectWithTag("SpawnedLocation").transform;
         }
 
         public override void OnNetworkSpawn()
@@ -28,26 +29,25 @@ namespace Final_Project.Robot_Types
             {
                 // If all locations are used, reset the availableLocations list
                 _availableLocations = new List<Transform>();
-                foreach (Transform child in spawnedLocations)
+                foreach (Transform child in _spawnedLocations)
                 {
                     _availableLocations.Add(child);
                 }
             }
-
-            index = Random.Range(0, _availableLocations.Count - 1);
-            Debug.Log("Adding player at spawned location" + _availableLocations[index].position);
-            
-            transform.position = _availableLocations[index].position;
-            Debug.Log("Player transform : " + transform.position);
-            
-            // Remove the selected location from the availableLocations list
-            _availableLocations.RemoveAt(index);
         }
-
         private void Start()
         {
-            transform.position = _availableLocations[index].position;
-            Debug.Log("Player transform : " + transform.position);
+            if (IsClient && IsOwner)
+            {
+                // _index = Random.Range(0, _availableLocations.Count - 1);
+                // transform.position = _availableLocations[_index].position;
+                //
+                // // Remove the selected location from the availableLocations list
+                // _availableLocations.RemoveAt(_index);
+            
+            
+                PlayerFollowCamera.Instance.FollowPlayer(transform);                
+            }
         }
 
         private void Update()
