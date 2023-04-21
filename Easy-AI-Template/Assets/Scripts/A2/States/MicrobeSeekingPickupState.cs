@@ -29,7 +29,7 @@ namespace A2.States
                 return;
             
             // Getting the nearest pickup using microbe sensor
-            MicrobeBasePickup pickup = microbe.Sense<NearestPickupSensor, MicrobeBasePickup>();
+            MicrobeBasePickup pickup = microbe.Sense<NearestPickupSensor, MicrobeBasePickup>();;
             if (pickup == null)
             {
                 microbe.Log("No pickups to eat");

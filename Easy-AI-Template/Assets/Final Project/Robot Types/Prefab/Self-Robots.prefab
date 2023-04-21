@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1617295646172615468
 Transform:
   m_ObjectHideFlags: 0
@@ -623,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5188436171994078065
 Transform:
   m_ObjectHideFlags: 0
@@ -930,7 +930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &40753578147179146
 Transform:
   m_ObjectHideFlags: 0
@@ -1261,12 +1261,15 @@ GameObject:
   - component: {fileID: 780751685667238015}
   - component: {fileID: 96186400134433569}
   - component: {fileID: 5550404642049105101}
-  - component: {fileID: 2845638835781946015}
   - component: {fileID: -2025290174463984087}
   - component: {fileID: 5968927523628694280}
+  - component: {fileID: 2845638835781946015}
+  - component: {fileID: 5648480714148236311}
+  - component: {fileID: 2991105501117425250}
+  - component: {fileID: 5318507060202370693}
   m_Layer: 0
   m_Name: Self-Robots
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1344,21 +1347,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
---- !u!114 &2845638835781946015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4864748457339713580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c34793a15ccdfbf49a41bc7e5bdefb05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roamRadius: 100
-  minRoamDelay: 1
-  maxRoamDelay: 5
 --- !u!114 &-2025290174463984087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1401,6 +1389,59 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &2845638835781946015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864748457339713580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c34793a15ccdfbf49a41bc7e5bdefb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roamRadius: 100
+  minRoamDelay: 1
+  maxRoamDelay: 5
+--- !u!114 &5648480714148236311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864748457339713580}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71a474218ff049429cbb7f86bba5d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2991105501117425250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864748457339713580}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d8ffe060084324084e0625f55d8553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupDistance: 2
+--- !u!114 &5318507060202370693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864748457339713580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1582ef34388d6564593f866a3eb078ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 100
 --- !u!1 &4892773341687702578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,7 +1566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8230027375011370369
 Transform:
   m_ObjectHideFlags: 0
@@ -1799,7 +1840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &579757830506374476
 Transform:
   m_ObjectHideFlags: 0
@@ -1953,7 +1994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5498058253593604031
 Transform:
   m_ObjectHideFlags: 0

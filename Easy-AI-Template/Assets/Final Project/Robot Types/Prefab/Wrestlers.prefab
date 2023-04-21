@@ -693,7 +693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5040429059182128747
 Transform:
   m_ObjectHideFlags: 0
@@ -1100,7 +1100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6478086465497101127
 Transform:
   m_ObjectHideFlags: 0
@@ -1906,9 +1906,10 @@ GameObject:
   - component: {fileID: 3036587076499679580}
   - component: {fileID: 8632758663463438114}
   - component: {fileID: 6551395368714742657}
+  - component: {fileID: 7140929795569990856}
   m_Layer: 0
   m_Name: Wrestlers
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2041,7 +2042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd380b70e939e0641b8962781b1c6fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 20
 --- !u!114 &3036587076499679580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2081,6 +2081,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d8ffe060084324084e0625f55d8553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupDistance: 50
+--- !u!114 &7140929795569990856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229313780681582163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1582ef34388d6564593f866a3eb078ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 100
 --- !u!1 &5433586820910667844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,7 +2543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7588613398140009950
 Transform:
   m_ObjectHideFlags: 0
@@ -2684,7 +2698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2663929391054264359
 Transform:
   m_ObjectHideFlags: 0
@@ -3126,7 +3140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4930211901455955939
 Transform:
   m_ObjectHideFlags: 0
@@ -3523,7 +3537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4149291545488513675
 Transform:
   m_ObjectHideFlags: 0

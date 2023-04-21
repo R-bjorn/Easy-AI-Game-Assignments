@@ -23,11 +23,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Assignmnet1/CreativeA1.unity
     guid: c1309c284bdedcf42b8e6ed3d61afadf
+  - enabled: 0
+    path: Assets/Final Project/Robot Scripts/New Scene.unity
+    guid: 9bae993a04729b24593797c1e01b6e5d
   - enabled: 1
     path: Assets/Scenes/Robots Versus Wrestlers.unity
     guid: 5ea7ea72ac31f9e488476d076947f49f
-  - enabled: 1
-    path: Assets/Final Project/Robot Scripts/New Scene.unity
-    guid: 9bae993a04729b24593797c1e01b6e5d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ac2e9bec2e581d54eb5002277b387897, type: 2}

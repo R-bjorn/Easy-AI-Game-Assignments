@@ -8,6 +8,7 @@ TagManager:
   - Collectors
   - Water
   - SpawnedLocation
+  - Enemy
   layers:
   - Default
   - TransparentFX

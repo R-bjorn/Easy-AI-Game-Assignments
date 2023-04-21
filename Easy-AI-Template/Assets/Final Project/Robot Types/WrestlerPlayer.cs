@@ -9,7 +9,7 @@ namespace Final_Project.Robot_Types
 {
     public class WrestlerPlayer : NetworkBehaviour
     {
-        [SerializeField] private float movementSpeed = 20f;
+        // [SerializeField] private float movementSpeed = 20f;
 
         // private GameObject cameraFollow;
 
