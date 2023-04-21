@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 3
     agentTypeID: 0
-    agentRadius: 1.5
-    agentHeight: 2.73
-    agentSlope: 45
-    agentClimb: 1.49
-    ledgeDropHeight: 0
+    agentRadius: 0.77
+    agentHeight: 2.65
+    agentSlope: 45.3
+    agentClimb: 0.62
+    ledgeDropHeight: 1.39
     maxJumpAcrossDistance: 9
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.5
+    cellSize: 0.25666666
     manualTileSize: 0
     tileSize: 256
     buildHeightMesh: 1
@@ -1495,21 +1495,33 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 1841010419
       objectReference: {fileID: 0}
-    - target: {fileID: 3186524989614232498, guid: f6782405cb18d0f4c859946778ff2915, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 1567609083
-      objectReference: {fileID: 0}
     - target: {fileID: 3230878864873245702, guid: f6782405cb18d0f4c859946778ff2915, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 152386996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257072206496543225, guid: f6782405cb18d0f4c859946778ff2915, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3333698291627200991, guid: f6782405cb18d0f4c859946778ff2915, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 129574306
       objectReference: {fileID: 0}
+    - target: {fileID: 5086101619428472835, guid: f6782405cb18d0f4c859946778ff2915, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -57.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5086101619428472835, guid: f6782405cb18d0f4c859946778ff2915, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -46.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5095109198538195696, guid: f6782405cb18d0f4c859946778ff2915, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3401089781
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318120493110002506, guid: f6782405cb18d0f4c859946778ff2915, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6335590772153321214, guid: f6782405cb18d0f4c859946778ff2915, type: 3}
       propertyPath: m_Name

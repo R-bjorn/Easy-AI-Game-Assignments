@@ -9,6 +9,7 @@ TagManager:
   - Water
   - SpawnedLocation
   - Enemy
+  - Healing Station
   layers:
   - Default
   - TransparentFX

@@ -1267,6 +1267,7 @@ GameObject:
   - component: {fileID: 5648480714148236311}
   - component: {fileID: 2991105501117425250}
   - component: {fileID: 5318507060202370693}
+  - component: {fileID: 8208103676602038757}
   m_Layer: 0
   m_Name: Self-Robots
   m_TagString: Enemy
@@ -1416,6 +1417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71a474218ff049429cbb7f86bba5d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healingDistance: 0.2
 --- !u!114 &2991105501117425250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1442,6 +1444,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 100
+--- !u!114 &8208103676602038757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864748457339713580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbd4a10797e4ba295069bc489303700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 150
 --- !u!1 &4892773341687702578
 GameObject:
   m_ObjectHideFlags: 0

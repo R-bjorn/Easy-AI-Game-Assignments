@@ -1,4 +1,5 @@
 using System;
+using Final_Project.Extra_Scripts;
 using UnityEngine;
 
 namespace Final_Project.Robot_Types.Prefab
@@ -25,6 +26,11 @@ namespace Final_Project.Robot_Types.Prefab
                 if (weaponTransform != null)
                 {
                     Debug.Log("Setting active the weapon");
+                    if (other.CompareTag("Player"))
+                    {
+                        Wrestler wrestler = other.GetComponent<Wrestler>();
+                        wrestler.HoldWeapon(weaponTransform);
+                    }
                     weaponTransform.gameObject.SetActive(true);
                 }
                 // Destroy the pickup game object
