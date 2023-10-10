@@ -76,6 +76,9 @@ The game also featured enemy AI agents with adaptive behavior based on their sur
 ### Scripts
 - [Scripts for final project](https://github.com/R-bjorn/Easy-AI-Game-Assignments/tree/main/Easy-AI-Template/Assets/Final%20Project)
 
+### Presentation
+[Final Project.pptx](https://github.com/R-bjorn/Easy-AI-Game-Assignments/files/12859713/Final.Project.pptx)
+
 
 ## Assets
 
