@@ -14,7 +14,7 @@ The repository includes the following assignments:
 - [Assignment 2](#assignment-2): Finite State Machines
 - [Assignment 3](#assignment-3): Steering Behaviours
 - [Assignment 4](#assignment-4): Navigation
-- [Project](#project): Goal-Oriented Behaviour
+- [Project](#final-project): Goal-Oriented Behaviour
 
 The assignments progressively enhance AI capabilities, starting from basic agent behaviors and culminating in complex team-based game AI for capturing the enemy flag.
 
